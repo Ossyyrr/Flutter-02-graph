@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttergraphdaysmonths/day_item.dart';
 
 enum PeriodSelection { Days, Months }
 
@@ -83,7 +84,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                   ),
                   Expanded(
                     child: Text(
-                      "(Visits in days)",
+                      "(Visits)",
                       textAlign: TextAlign.end,
                       style: TextStyle(
                           fontSize: 15.0, color: Colors.white.withOpacity(0.7)),
@@ -123,19 +124,10 @@ class _GraphWidgetState extends State<GraphWidget> {
   }
 
   Widget dayItem(String day, int value, double maxHeight) {
-    var barHeight = (maxHeight) * value / 100.0;
-    var offsetY = maxHeight - barHeight - 110.0;
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          height: offsetY,
-        ),
-        Text(value.toString(), style: TextStyle(color: Colors.greenAccent)),
-        SizedBox(height: 12.0),
-        Container(width: 2.0, height: barHeight, color: Colors.greenAccent),
-        SizedBox(height: 12.0),
-        Text(day, style: TextStyle(color: Colors.blueGrey))
-      ],
+    return DayItem(
+      day: day,
+      value: value,
+      maxHeight: maxHeight,
     );
   }
 }
