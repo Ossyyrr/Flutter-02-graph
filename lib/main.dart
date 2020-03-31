@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttergraphdaysmonths/graph_widget.dart';
 
 const backgroundColor = Color(0xff5E37DB);
 
@@ -52,8 +53,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           userWidget(),
           pointsWidget(),
-          graphWidget(),
-          friendsWidget(),
+          GraphWidget(),
         ],
       ),
     );
@@ -159,92 +159,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget graphWidget() {
-    return Expanded(
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 32.0, top: 24.0, right: 16.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text(
-                    "Days",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  SizedBox(width: 16.0),
-                  Text(
-                    "Months",
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "(Visits in days)",
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                          fontSize: 15.0, color: Colors.white.withOpacity(0.7)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  return Container(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32.0, top: 24.0, right: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          dayItem("01.05", 35, constraints.maxHeight),
-                          dayItem("02.05", 25, constraints.maxHeight),
-                          dayItem("03.05", 25, constraints.maxHeight),
-                          dayItem("04.05", 55, constraints.maxHeight),
-                          dayItem("05.05", 35, constraints.maxHeight),
-                          dayItem("06.05", 15, constraints.maxHeight),
-                          dayItem("07.05", 35, constraints.maxHeight),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget dayItem(String day, int value, double maxHeight) {
-    var barHeight = maxHeight * value / 100.0;
-    var offsetY = maxHeight - barHeight - 110.0;
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          height: offsetY,
-        ),
-        Text(value.toString(), style: TextStyle(color: Colors.greenAccent)),
-        SizedBox(height: 12.0),
-        Container(width: 2.0, height: barHeight, color: Colors.greenAccent),
-        SizedBox(height: 12.0),
-        Text(day, style: TextStyle(color: Colors.blueGrey))
-      ],
-    );
-  }
-
-  Widget friendsWidget() => Container();
 }
 
 class PointsPainter extends CustomPainter {
